@@ -35,7 +35,18 @@ def create_app():
     cf_deployment_tracker.track()
 
     # Create the app
-    logistics_wizard = Flask('logistics_wizard', static_folder=None)
+    logistics_wizard = Flask('logistics_wizard', static_folder='ui_dist')
+    # logistics_wizard.debug = True
+
+    @logistics_wizard.route('/')
+    def root():
+        return logistics_wizard.send_static_file('index.html')
+
+    @logistics_wizard.route('/<path:path>')
+    def static_proxy(path):
+      # send_static_file will guess the correct MIME type
+      return logistics_wizard.send_static_file(path)
+
     CORS(logistics_wizard, origins=[re.compile('.*')], supports_credentials=True)
     if Config.ENVIRONMENT == 'DEV':
         logistics_wizard.debug = True

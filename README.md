@@ -80,7 +80,7 @@ And voila! You now have your very own instance of Logistics Wizard running on Bl
 
 2. Clone the app to your local environment from your terminal using the following command:
 
-  ```bash 
+  ```bash
   $ git clone --recursive https://github.com/IBM-Bluemix/logistics-wizard.git
   ```
 
@@ -91,7 +91,7 @@ And voila! You now have your very own instance of Logistics Wizard running on Bl
   ```bash
   $ pip install virtualenv
   ```
-  
+
   Then create a virtual environment called `venv` by running
 
   ```bash
@@ -103,14 +103,22 @@ And voila! You now have your very own instance of Logistics Wizard running on Bl
   ```bash
   $ source .env
   ```
-  
+
 6. Install module requirements
 
   ```bash
   $ pip install -r requirements.dev.txt
   ```
 
-7. Finally, start the app
+7. Build the UI
+
+  ```bash
+  $ cd client-src
+  $ npm run deploy:prod
+  $ cd ..
+  ```
+
+8. Finally, start the app
 
   ```bash
   $ python bin/start_web.py
@@ -130,11 +138,11 @@ There are series of unit tests located in the [`server/tests`](server/tests) fol
 The tests will print a dot for each successfully completed unit test. If a test fails for any reason, it will mark that test with either an F or E and print the reason for any failed tests after the test suites are all completed. For example, here is the output of a successfully complete [`test_demos_service.py`](server/tests/test_demos_service.py) test:
 
   ```bash
-  (venv) MyMac:logistics-wizard User$ python server/tests/test_demos_service.py 
+  (venv) MyMac:logistics-wizard User$ python server/tests/test_demos_service.py
   .......
   ----------------------------------------------------------------------
   Ran 7 tests in 30.597s
-  
+
   OK
   ```
 
